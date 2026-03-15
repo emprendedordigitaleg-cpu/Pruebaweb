@@ -1,209 +1,516 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi primera web profesional</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Página Pro</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-      color: white;
+      background: #0f172a;
+      color: #e2e8f0;
       line-height: 1.6;
     }
 
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
     header {
-      background: rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(10px);
-      padding: 20px 40px;
+    }
+
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
+      padding: 18px 0;
     }
 
-    header h1 {
+    .logo {
       font-size: 24px;
+      font-weight: bold;
       color: #38bdf8;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
       font-weight: bold;
       transition: 0.3s;
     }
 
-    nav a:hover {
+    .nav-links a:hover {
       color: #38bdf8;
     }
 
     .hero {
-      text-align: center;
-      padding: 100px 20px 70px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #06b6d4 100%);
     }
 
-    .hero h2 {
-      font-size: 48px;
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 70px 0;
+    }
+
+    .hero-text h1 {
+      font-size: 52px;
+      line-height: 1.1;
       margin-bottom: 20px;
+      color: white;
     }
 
-    .hero p {
+    .hero-text p {
       font-size: 20px;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: #cbd5e1;
+      color: #dbeafe;
+      margin-bottom: 30px;
+      max-width: 650px;
     }
 
-    .buttons a {
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn {
       display: inline-block;
-      padding: 14px 28px;
-      margin: 10px;
-      border-radius: 10px;
-      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 12px;
       font-weight: bold;
       transition: 0.3s;
     }
 
     .btn-primary {
-      background: #38bdf8;
+      background: white;
       color: #0f172a;
     }
 
     .btn-primary:hover {
-      background: #0ea5e9;
+      transform: translateY(-2px);
+      opacity: 0.92;
     }
 
     .btn-secondary {
-      border: 2px solid #38bdf8;
+      border: 2px solid white;
       color: white;
     }
 
     .btn-secondary:hover {
-      background: #38bdf8;
+      background: white;
       color: #0f172a;
     }
 
-    .section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
     }
 
-    .section h3 {
+    .hero-card h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+      color: white;
+    }
+
+    .hero-card p {
+      color: #dbeafe;
+      margin-bottom: 14px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .hero-card li {
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #67e8f9;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
       text-align: center;
-      font-size: 32px;
-      margin-bottom: 40px;
-      color: #38bdf8;
+      font-size: 38px;
+      margin-bottom: 15px;
+      color: white;
     }
 
-    .cards {
+    .section-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    .features-grid,
+    .services-grid,
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: transform 0.3s, background 0.3s;
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      transition: 0.3s;
     }
 
     .card:hover {
       transform: translateY(-8px);
-      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(56, 189, 248, 0.5);
     }
 
-    .card h4 {
-      margin-bottom: 12px;
-      color: #f8fafc;
+    .card h3 {
+      margin-bottom: 14px;
+      color: #38bdf8;
+      font-size: 22px;
     }
 
     .card p {
       color: #cbd5e1;
-      font-size: 15px;
     }
 
-    .about {
+    .cta {
+      background: linear-gradient(135deg, #1e3a8a, #0891b2);
+      border-radius: 28px;
+      padding: 50px 30px;
       text-align: center;
-      max-width: 800px;
-      margin: auto;
-      color: #cbd5e1;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.22);
+    }
+
+    .cta h2 {
+      font-size: 38px;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      color: #dbeafe;
       font-size: 18px;
     }
 
+    .testimonial {
+      background: #111827;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 16px;
+      color: #67e8f9;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      background: #111827;
+      border-radius: 24px;
+      padding: 35px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .contact-info p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #1f2937;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      border: none;
+      cursor: pointer;
+    }
+
     footer {
+      padding: 30px 0;
       text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-      background: rgba(0, 0, 0, 0.25);
       color: #94a3b8;
-      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 40px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .hero-text h1 {
+        font-size: 34px;
+      }
+
+      .hero-text p {
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Mi Web</h1>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#sobre-mi">Sobre mí</a>
-    </nav>
+    <div class="container navbar">
+      <div class="logo">MiMarca</div>
+      <nav class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
   </header>
 
   <section class="hero" id="inicio">
-    <h2>Bienvenido a mi página web</h2>
-    <p>
-      Esta es una versión más profesional de mi primera web, con diseño moderno,
-      colores atractivos y secciones organizadas.
-    </p>
-    <div class="buttons">
-      <a href="#servicios" class="btn-primary">Ver servicios</a>
-      <a href="#sobre-mi" class="btn-secondary">Conocer más</a>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Construyo una presencia profesional en internet</h1>
+        <p>
+          Esta página está diseñada para mostrar servicios, vender productos digitales
+          o presentar un negocio de forma moderna, confiable y atractiva.
+        </p>
+        <div class="hero-buttons">
+          <a href="#servicios" class="btn btn-primary">Ver servicios</a>
+          <a href="#contacto" class="btn btn-secondary">Contactarme</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Ideal para comenzar online</h3>
+        <p>Esta estructura sirve para múltiples objetivos:</p>
+        <ul>
+          <li>Ofrecer servicios profesionales</li>
+          <li>Vender ebooks o cursos</li>
+          <li>Captar clientes potenciales</li>
+          <li>Mostrar una marca personal</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="servicios">
-    <h3>Mis servicios</h3>
-    <div class="cards">
-      <div class="card">
-        <h4>Diseño Web</h4>
-        <p>Creación de páginas modernas, rápidas y adaptadas a distintos dispositivos.</p>
-      </div>
-      <div class="card">
-        <h4>Automatización</h4>
-        <p>Desarrollo de procesos automáticos para ahorrar tiempo y mejorar resultados.</p>
-      </div>
-      <div class="card">
-        <h4>Bot con IA</h4>
-        <p>Integración de asistentes virtuales para responder preguntas y captar clientes.</p>
+  <section id="beneficios">
+    <div class="container">
+      <h2 class="section-title">¿Por qué esta página se ve más profesional?</h2>
+      <p class="section-subtitle">
+        Porque ya no es solo texto. Aquí tienes estructura, jerarquía visual, colores,
+        bloques claros y llamadas a la acción.
+      </p>
+
+      <div class="features-grid">
+        <div class="card">
+          <h3>Diseño moderno</h3>
+          <p>Usa colores, sombras, bloques y espaciado para que el sitio se vea actual y confiable.</p>
+        </div>
+        <div class="card">
+          <h3>Enfoque comercial</h3>
+          <p>La página está pensada para atraer atención, explicar valor y llevar al visitante a tomar acción.</p>
+        </div>
+        <div class="card">
+          <h3>Adaptable</h3>
+          <p>Funciona bien tanto en computador como en celular, algo clave para una web real hoy.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="sobre-mi">
-    <h3>Sobre mí</h3>
-    <p class="about">
-      Estoy aprendiendo a crear proyectos en internet y esta página es parte de ese proceso.
-      Más adelante puedo convertir este sitio en una landing page, una web de servicios
-      o incluso una página para vender productos digitales.
-    </p>
+  <section id="servicios">
+    <div class="container">
+      <h2 class="section-title">Servicios</h2>
+      <p class="section-subtitle">
+        Puedes cambiar estas tarjetas por lo que realmente quieras ofrecer.
+      </p>
+
+      <div class="services-grid">
+        <div class="card">
+          <h3>Diseño de páginas web</h3>
+          <p>Creación de sitios modernos para mostrar negocios, marcas personales o productos digitales.</p>
+        </div>
+        <div class="card">
+          <h3>Automatización con IA</h3>
+          <p>Implementación de soluciones inteligentes para ahorrar tiempo y mejorar procesos.</p>
+        </div>
+        <div class="card">
+          <h3>Asistentes virtuales</h3>
+          <p>Integración de bots y sistemas de atención que ayudan a responder preguntas y captar clientes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <h2>Transforma esta página en una herramienta para generar ingresos</h2>
+        <p>
+          Puedes usar esta base para vender un ebook, promocionar un curso,
+          captar clientes para servicios o construir una marca profesional.
+        </p>
+        <a href="#contacto" class="btn btn-primary">Quiero empezar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios">
+    <div class="container">
+      <h2 class="section-title">Testimonios</h2>
+      <p class="section-subtitle">
+        Estos son ejemplos visuales. Luego puedes cambiarlos por testimonios reales.
+      </p>
+
+      <div class="testimonials-grid">
+        <div class="card testimonial">
+          <p>
+            “La página quedó mucho más profesional de lo que esperaba. Ahora transmite confianza
+            y se ve lista para mostrar un negocio real.”
+          </p>
+          <strong>— Cliente 1</strong>
+        </div>
+        <div class="card testimonial">
+          <p>
+            “Me gustó que el diseño se vea moderno y claro. Es una excelente base para vender servicios
+            o productos digitales.”
+          </p>
+          <strong>— Cliente 2</strong>
+        </div>
+        <div class="card testimonial">
+          <p>
+            “Antes tenía solo texto. Con esta estructura ya parece una web comercial de verdad.”
+          </p>
+          <strong>— Cliente 3</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-info">
+          <h3>Hablemos</h3>
+          <p>Esta sección sirve para que una persona te contacte por interés en tus servicios.</p>
+          <p><strong>Email:</strong> tucorreo@ejemplo.com</p>
+          <p><strong>WhatsApp:</strong> +56 9 1234 5678</p>
+          <p><strong>Horario:</strong> Lunes a Viernes, 9:00 a 18:00</p>
+        </div>
+
+        <div class="contact-form">
+          <h3>Envíame un mensaje</h3>
+          <form>
+            <input type="text" placeholder="Tu nombre" />
+            <input type="email" placeholder="Tu correo" />
+            <textarea placeholder="Escribe tu mensaje"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    © 2026 Mi primera web profesional | Creada por mí
+    © 2026 MiMarca | Página profesional creada por mí
   </footer>
 
 </body>
