@@ -1,517 +1,424 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Página Pro</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.95);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #38bdf8;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #e2e8f0;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #38bdf8;
-    }
-
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #06b6d4 100%);
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 70px 0;
-    }
-
-    .hero-text h1 {
-      font-size: 52px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    .hero-text p {
-      font-size: 20px;
-      color: #dbeafe;
-      margin-bottom: 30px;
-      max-width: 650px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: white;
-      color: #0f172a;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      opacity: 0.92;
-    }
-
-    .btn-secondary {
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: white;
-      color: #0f172a;
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-card h3 {
-      font-size: 24px;
-      margin-bottom: 14px;
-      color: white;
-    }
-
-    .hero-card p {
-      color: #dbeafe;
-      margin-bottom: 14px;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      margin-top: 15px;
-    }
-
-    .hero-card li {
-      margin-bottom: 12px;
-      padding-left: 24px;
-      position: relative;
-    }
-
-    .hero-card li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #67e8f9;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 90px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 38px;
-      margin-bottom: 15px;
-      color: white;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 50px;
-      color: #94a3b8;
-      font-size: 18px;
-    }
-
-    .features-grid,
-    .services-grid,
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: #1e293b;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(56, 189, 248, 0.5);
-    }
-
-    .card h3 {
-      margin-bottom: 14px;
-      color: #38bdf8;
-      font-size: 22px;
-    }
-
-    .card p {
-      color: #cbd5e1;
-    }
-
-    .cta {
-      background: linear-gradient(135deg, #1e3a8a, #0891b2);
-      border-radius: 28px;
-      padding: 50px 30px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.22);
-    }
-
-    .cta h2 {
-      font-size: 38px;
-      color: white;
-      margin-bottom: 16px;
-    }
-
-    .cta p {
-      max-width: 700px;
-      margin: 0 auto 25px;
-      color: #dbeafe;
-      font-size: 18px;
-    }
-
-    .testimonial {
-      background: #111827;
-    }
-
-    .testimonial strong {
-      display: block;
-      margin-top: 16px;
-      color: #67e8f9;
-    }
-
-    .contact-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      background: #111827;
-      border-radius: 24px;
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .contact-info h3,
-    .contact-form h3 {
-      font-size: 28px;
-      margin-bottom: 16px;
-      color: white;
-    }
-
-    .contact-info p {
-      color: #cbd5e1;
-      margin-bottom: 12px;
-    }
-
-    .contact-form form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #1f2937;
-      color: white;
-      font-size: 16px;
-      outline: none;
-    }
-
-    .contact-form textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .contact-form button {
-      border: none;
-      cursor: pointer;
-    }
-
-    footer {
-      padding: 30px 0;
-      text-align: center;
-      color: #94a3b8;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      margin-top: 40px;
-    }
-
-    @media (max-width: 900px) {
-      .hero-content,
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-text h1 {
-        font-size: 40px;
-      }
-
-      .section-title {
-        font-size: 32px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-links {
-        justify-content: center;
-      }
-
-      .hero-text h1 {
-        font-size: 34px;
-      }
-
-      .hero-text p {
-        font-size: 18px;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinEdge Books</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a26;--gold:#c9a84c;--gold2:#e8c96b;--text:#f0f0f0;--muted:#888;--border:#222230}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .logo{font-size:1.3rem;font-weight:700;letter-spacing:1px;color:var(--gold)}
+  .logo span{color:var(--text)}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:.5px;transition:color .2s}
+  nav a:hover{color:var(--gold)}
+  /* LANGUAGE SELECTOR */
+  .lang-selector{position:relative}
+  .lang-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:20px;color:var(--gold);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+  .lang-btn:hover{background:rgba(201,168,76,.15)}
+  .lang-btn .flag{font-size:1rem}
+  .lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-width:150px;display:none;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+  .lang-dropdown.open{display:block}
+  .lang-option{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .15s;font-size:.87rem}
+  .lang-option:hover{background:rgba(201,168,76,.08)}
+  .lang-option.active{color:var(--gold);font-weight:600}
+  .lang-option .flag{font-size:1.1rem}
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.12),transparent)}
+  .hero-badge{display:inline-block;padding:6px 16px;border:1px solid var(--gold);border-radius:20px;font-size:.78rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:24px}
+  .hero h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.15;max-width:700px;margin:0 auto 20px}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 40px}
+  .btn{display:inline-block;padding:14px 32px;background:var(--gold);color:#0a0a0f;font-weight:700;font-size:.95rem;border-radius:6px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;letter-spacing:.5px}
+  .btn:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+  .btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);margin-left:12px}
+  .btn-outline:hover{background:rgba(201,168,76,.1)}
+  .hero-stats{display:flex;gap:48px;justify-content:center;margin-top:60px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat strong{display:block;font-size:2rem;font-weight:800;color:var(--gold)}
+  .stat span{font-size:.85rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+  section{padding:90px 5%}
+  .section-label{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
+  .section-sub{color:var(--muted);max-width:500px;margin-bottom:50px}
+  #catalogo{background:var(--bg2)}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+  .filter-btn{padding:7px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.85rem;cursor:pointer;transition:all .2s}
+  .filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.07)}
+  .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+  .book-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;cursor:pointer}
+  .book-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.4);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .book-cover{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .book-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.5))}
+  .badge{position:absolute;top:12px;right:12px;padding:4px 10px;border-radius:4px;font-size:.72rem;font-weight:700;z-index:1;letter-spacing:.5px}
+  .badge.new{background:var(--gold);color:#0a0a0f}
+  .badge.best{background:#2a5caa;color:#fff}
+  .book-info{padding:18px}
+  .book-cat{font-size:.75rem;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+  .book-title{font-size:1rem;font-weight:700;margin-bottom:6px;line-height:1.3}
+  .book-desc{font-size:.83rem;color:var(--muted);margin-bottom:16px;line-height:1.5}
+  .book-footer{display:flex;align-items:center;justify-content:space-between}
+  .price{font-size:1.2rem;font-weight:800;color:var(--gold)}
+  .price-old{font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-left:6px}
+  .buy-btn{padding:8px 16px;background:var(--gold);color:#0a0a0f;border:none;border-radius:6px;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s}
+  .buy-btn:hover{background:var(--gold2)}
+  #testimonios{background:var(--bg)}
+  .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+  .testi-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .3s}
+  .testi-card:hover{border-color:rgba(201,168,76,.3)}
+  .stars{color:var(--gold);font-size:1rem;margin-bottom:14px;letter-spacing:2px}
+  .testi-text{color:#ccc;font-size:.9rem;line-height:1.7;margin-bottom:20px;font-style:italic}
+  .testi-author{display:flex;align-items:center;gap:12px}
+  .avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;background:linear-gradient(135deg,var(--gold),#8b6914)}
+  .author-info strong{display:block;font-size:.9rem}
+  .author-info span{font-size:.78rem;color:var(--muted)}
+  .cta-section{background:linear-gradient(135deg,#12121a,#1a1a26);text-align:center;padding:90px 5%;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .cta-section h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;margin-bottom:16px}
+  .cta-section p{color:var(--muted);margin-bottom:36px;font-size:1.05rem}
+  footer{background:var(--bg2);padding:48px 5% 28px;border-top:1px solid var(--border)}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  .footer-brand p{color:var(--muted);font-size:.87rem;margin-top:12px;line-height:1.6;max-width:260px}
+  footer h4{font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px}
+  footer a{color:var(--muted);text-decoration:none;font-size:.87rem;transition:color .2s}
+  footer a:hover{color:var(--gold)}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .footer-bottom p{color:var(--muted);font-size:.82rem}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--bg3);border:1px solid var(--border);border-radius:16px;max-width:480px;width:100%;padding:36px;position:relative}
+  .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer}
+  .modal h3{font-size:1.4rem;font-weight:800;margin-bottom:8px}
+  .modal .modal-cat{color:var(--gold);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+  .modal p{color:#bbb;font-size:.9rem;line-height:1.7;margin-bottom:20px}
+  .modal-price{font-size:2rem;font-weight:800;color:var(--gold);margin-bottom:24px}
+  .modal-price span{font-size:.9rem;color:var(--muted);font-weight:400;text-decoration:line-through;margin-left:8px}
+  .modal .btn{width:100%;text-align:center;display:block}
+  @media(max-width:640px){nav ul{display:none}.hero-stats{gap:28px}.footer-grid{grid-template-columns:1fr}.btn-outline{margin-left:0;margin-top:12px}}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="container navbar">
-      <div class="logo">MiMarca</div>
-      <nav class="nav-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero" id="inicio">
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Construyo una presencia profesional en internet</h1>
-        <p>
-          Esta página está diseñada para mostrar servicios, vender productos digitales
-          o presentar un negocio de forma moderna, confiable y atractiva.
-        </p>
-        <div class="hero-buttons">
-          <a href="#servicios" class="btn btn-primary">Ver servicios</a>
-          <a href="#contacto" class="btn btn-secondary">Contactarme</a>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3>Ideal para comenzar online</h3>
-        <p>Esta estructura sirve para múltiples objetivos:</p>
-        <ul>
-          <li>Ofrecer servicios profesionales</li>
-          <li>Vender ebooks o cursos</li>
-          <li>Captar clientes potenciales</li>
-          <li>Mostrar una marca personal</li>
-        </ul>
+<nav>
+  <div class="logo">Fin<span>Edge</span> Books</div>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#catalogo" data-i18n="nav.catalog"></a></li>
+      <li><a href="#testimonios" data-i18n="nav.reviews"></a></li>
+    </ul>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+        <span class="flag" id="currentFlag">🇪🇸</span>
+        <span id="currentLang">ES</span>
+        <span style="font-size:.7rem;opacity:.6">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" onclick="setLang('es')"><span class="flag">🇪🇸</span> Español</div>
+        <div class="lang-option" onclick="setLang('en')"><span class="flag">🇺🇸</span> English</div>
+        <div class="lang-option" onclick="setLang('pt')"><span class="flag">🇧🇷</span> Português</div>
       </div>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <section id="beneficios">
-    <div class="container">
-      <h2 class="section-title">¿Por qué esta página se ve más profesional?</h2>
-      <p class="section-subtitle">
-        Porque ya no es solo texto. Aquí tienes estructura, jerarquía visual, colores,
-        bloques claros y llamadas a la acción.
-      </p>
+<section class="hero">
+  <div>
+    <div class="hero-badge" data-i18n="hero.badge"></div>
+    <h1 data-i18n-html="hero.title"></h1>
+    <p data-i18n="hero.sub"></p>
+    <div>
+      <a href="#catalogo" class="btn" data-i18n="hero.cta1"></a>
+      <a href="#testimonios" class="btn btn-outline" data-i18n="hero.cta2"></a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>12+</strong><span data-i18n="stats.ebooks"></span></div>
+      <div class="stat"><strong>4,800+</strong><span data-i18n="stats.readers"></span></div>
+      <div class="stat"><strong>4.9★</strong><span data-i18n="stats.rating"></span></div>
+    </div>
+  </div>
+</section>
 
-      <div class="features-grid">
-        <div class="card">
-          <h3>Diseño moderno</h3>
-          <p>Usa colores, sombras, bloques y espaciado para que el sitio se vea actual y confiable.</p>
-        </div>
-        <div class="card">
-          <h3>Enfoque comercial</h3>
-          <p>La página está pensada para atraer atención, explicar valor y llevar al visitante a tomar acción.</p>
-        </div>
-        <div class="card">
-          <h3>Adaptable</h3>
-          <p>Funciona bien tanto en computador como en celular, algo clave para una web real hoy.</p>
+<section id="catalogo">
+  <div class="section-label" data-i18n="catalog.label"></div>
+  <div class="section-title" data-i18n="catalog.title"></div>
+  <p class="section-sub" data-i18n="catalog.sub"></p>
+  <div class="filters" id="filtersContainer"></div>
+  <div class="books-grid" id="booksGrid"></div>
+</section>
+
+<section id="testimonios">
+  <div class="section-label" data-i18n="testi.label"></div>
+  <div class="section-title" data-i18n="testi.title"></div>
+  <p class="section-sub" data-i18n="testi.sub"></p>
+  <div class="testimonials-grid" id="testiGrid"></div>
+</section>
+
+<div class="cta-section">
+  <h2 data-i18n-html="cta.title"></h2>
+  <p data-i18n="cta.sub"></p>
+  <a href="#catalogo" class="btn" data-i18n="cta.btn"></a>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Fin<span>Edge</span> Books</div>
+      <p data-i18n="footer.desc"></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.cat"></h4>
+      <ul>
+        <li><a href="#" data-i18n="filter.finance"></a></li>
+        <li><a href="#" data-i18n="filter.invest"></a></li>
+        <li><a href="#" data-i18n="filter.business"></a></li>
+        <li><a href="#" data-i18n="footer.packs"></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer.company"></h4>
+      <ul>
+        <li><a href="#" data-i18n="footer.about"></a></li>
+        <li><a href="#" data-i18n="footer.contact"></a></li>
+        <li><a href="#" data-i18n="footer.privacy"></a></li>
+        <li><a href="#" data-i18n="footer.terms"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="footer.copy"></p>
+    <p data-i18n="footer.tagline"></p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    <div class="modal-cat" id="m-cat"></div>
+    <h3 id="m-title"></h3>
+    <p id="m-desc"></p>
+    <div class="modal-price" id="m-price"></div>
+    <button class="btn" id="m-buybtn" onclick="alert(i18n[lang].modal.thanks)"></button>
+  </div>
+</div>
+
+<script>
+// ===================== TRANSLATIONS =====================
+const i18n = {
+  es: {
+    nav:{catalog:"Catálogo",reviews:"Reseñas"},
+    hero:{badge:"📈 Conocimiento que genera resultados",title:"Domina tus <em>finanzas</em> y escala tu <em>negocio</em>",sub:"Ebooks prácticos escritos por expertos para que tomes decisiones inteligentes y construyas riqueza real.",cta1:"Ver catálogo",cta2:"Leer reseñas"},
+    stats:{ebooks:"Ebooks",readers:"Lectores",rating:"Valoración"},
+    catalog:{label:"📚 Biblioteca",title:"Catálogo de Ebooks",sub:"Elige el conocimiento que necesitas. Descarga instantánea tras la compra."},
+    filter:{all:"Todos",finance:"Finanzas personales",invest:"Inversión",business:"Negocios"},
+    badge:{new:"NUEVO",best:"MÁS VENDIDO"},
+    testi:{label:"💬 Opiniones",title:"Lo que dicen nuestros lectores",sub:"Más de 4,800 personas ya transformaron su relación con el dinero."},
+    cta:{title:"Tu próximo nivel financiero<br>empieza con una lectura",sub:"Descarga instantánea. Sin suscripciones. Tuyo para siempre.",btn:"Explorar todos los ebooks"},
+    footer:{desc:"Ebooks de negocios y finanzas diseñados para quienes quieren resultados reales, no teoría vacía.",cat:"Catálogo",packs:"Packs especiales",company:"Empresa",about:"Acerca de",contact:"Contacto",privacy:"Política de privacidad",terms:"Términos de uso",copy:"© 2026 FinEdge Books. Todos los derechos reservados.",tagline:"Descarga instantánea · Pago seguro · Soporte 24/7"},
+    modal:{viewmore:"Ver más",buynow:"Comprar ahora →",thanks:"¡Gracias por tu compra! Aquí se integraría el procesador de pago.",extra:"Este ebook incluye ejemplos reales, plantillas descargables y acceso a recursos adicionales en línea."},
+    books:[
+      {title:"Dinero Inteligente",catLabel:"Finanzas personales",desc:"Domina tus gastos, elimina deudas y construye un fondo de emergencia sólido en 90 días con un sistema probado."},
+      {title:"Invierte sin Miedo",catLabel:"Inversión",desc:"Guía completa para comenzar en bolsa, ETFs y criptomonedas con capital mínimo y máxima estrategia."},
+      {title:"Startup en 30 Días",catLabel:"Negocios",desc:"El framework paso a paso para validar, lanzar y monetizar tu idea de negocio sin inversión inicial."},
+      {title:"Libertad Financiera",catLabel:"Finanzas personales",desc:"El plan completo para alcanzar independencia financiera antes de los 45. Estrategias reales y aplicables."},
+      {title:"Trading para Todos",catLabel:"Inversión",desc:"Aprende análisis técnico, gestión de riesgo y psicología del trader con ejercicios prácticos incluidos."},
+      {title:"Flujo de Caja Maestro",catLabel:"Negocios",desc:"Controla la liquidez de tu empresa, evita crisis financieras y mantén tu negocio saludable todo el año."},
+    ],
+    testimonials:[
+      {text:'"Empecé a leer \'Dinero Inteligente\' un domingo y para el miércoles ya había reestructurado toda mi cartera. Es directo, práctico y sin relleno."',name:"Carlos Mendoza",role:"Ingeniero, México"},
+      {text:'"El ebook de startups me dio el marco mental que necesitaba para validar mi idea sin gastar fortunas. Tres meses después lancé mi primer producto."',name:"Laura Paredes",role:"Emprendedora, Colombia"},
+      {text:'"Llevaba años intentando entender la bolsa. Este ebook lo explica de forma tan clara que en una tarde entendí más que en meses de videos."',name:"Andrés Ríos",role:"Contador, Argentina"},
+      {text:'"La guía de flujo de caja me salvó el negocio literalmente. Tenía una empresa rentable que casi quiebra por no gestionar bien la liquidez."',name:"María Villalobos",role:"Dueña de PYME, Chile"},
+      {text:'"Compré el pack completo y fue la mejor inversión del año. El contenido está siempre actualizado y el soporte responde rápido."',name:"Jorge Peña",role:"Consultor, España"},
+      {text:'"Como mamá con poco tiempo, necesitaba algo concreto. El ebook tiene exactamente eso: pasos claros, sin tecnicismos, aplicables desde hoy."',name:"Sofía García",role:"Profesora, Perú"},
+    ]
+  },
+  en: {
+    nav:{catalog:"Catalog",reviews:"Reviews"},
+    hero:{badge:"📈 Knowledge that drives results",title:"Master your <em>finances</em> and scale your <em>business</em>",sub:"Practical ebooks written by experts to help you make smart decisions and build real wealth.",cta1:"View catalog",cta2:"Read reviews"},
+    stats:{ebooks:"Ebooks",readers:"Readers",rating:"Rating"},
+    catalog:{label:"📚 Library",title:"Ebook Catalog",sub:"Choose the knowledge you need. Instant download after purchase."},
+    filter:{all:"All",finance:"Personal Finance",invest:"Investing",business:"Business"},
+    badge:{new:"NEW",best:"BESTSELLER"},
+    testi:{label:"💬 Reviews",title:"What our readers say",sub:"Over 4,800 people have already transformed their relationship with money."},
+    cta:{title:"Your next financial level<br>starts with one read",sub:"Instant download. No subscriptions. Yours forever.",btn:"Explore all ebooks"},
+    footer:{desc:"Business and finance ebooks designed for those who want real results, not empty theory.",cat:"Catalog",packs:"Special packs",company:"Company",about:"About us",contact:"Contact",privacy:"Privacy policy",terms:"Terms of use",copy:"© 2026 FinEdge Books. All rights reserved.",tagline:"Instant download · Secure payment · 24/7 support"},
+    modal:{viewmore:"Learn more",buynow:"Buy now →",thanks:"Thank you for your purchase! Payment processor would be integrated here.",extra:"This ebook includes real examples, downloadable templates and access to additional online resources."},
+    books:[
+      {title:"Smart Money",catLabel:"Personal Finance",desc:"Master your expenses, eliminate debt and build a solid emergency fund in 90 days with a proven system."},
+      {title:"Invest Without Fear",catLabel:"Investing",desc:"Complete guide to getting started in stocks, ETFs and crypto with minimum capital and maximum strategy."},
+      {title:"Startup in 30 Days",catLabel:"Business",desc:"The step-by-step framework to validate, launch and monetize your business idea with no upfront investment."},
+      {title:"Financial Freedom",catLabel:"Personal Finance",desc:"The complete plan to achieve financial independence before 45. Real, actionable strategies."},
+      {title:"Trading for Everyone",catLabel:"Investing",desc:"Learn technical analysis, risk management and trader psychology with practical exercises included."},
+      {title:"Cash Flow Master",catLabel:"Business",desc:"Control your company's liquidity, avoid financial crises and keep your business healthy all year long."},
+    ],
+    testimonials:[
+      {text:'"I started reading \'Smart Money\' on Sunday and by Wednesday I had restructured my entire portfolio. Direct, practical and no fluff."',name:"Carlos Mendoza",role:"Engineer, Mexico"},
+      {text:'"The startup ebook gave me the mental framework I needed to validate my idea without spending a fortune. Three months later I launched my first product."',name:"Laura Paredes",role:"Entrepreneur, Colombia"},
+      {text:'"I had been trying to understand the stock market for years. This ebook explains it so clearly that in one afternoon I learned more than months of videos."',name:"Andrés Ríos",role:"Accountant, Argentina"},
+      {text:'"The cash flow guide literally saved my business. I had a profitable company that almost went bankrupt from poor liquidity management."',name:"María Villalobos",role:"SME Owner, Chile"},
+      {text:'"I bought the full pack and it was the best investment of the year. Content is always up to date and support responds quickly."',name:"Jorge Peña",role:"Consultant, Spain"},
+      {text:'"As a busy mom, I needed something concrete. The ebook has exactly that: clear steps, no jargon, applicable from today."',name:"Sofía García",role:"Teacher, Peru"},
+    ]
+  },
+  pt: {
+    nav:{catalog:"Catálogo",reviews:"Avaliações"},
+    hero:{badge:"📈 Conhecimento que gera resultados",title:"Domine suas <em>finanças</em> e escale seu <em>negócio</em>",sub:"Ebooks práticos escritos por especialistas para você tomar decisões inteligentes e construir riqueza real.",cta1:"Ver catálogo",cta2:"Ler avaliações"},
+    stats:{ebooks:"Ebooks",readers:"Leitores",rating:"Avaliação"},
+    catalog:{label:"📚 Biblioteca",title:"Catálogo de Ebooks",sub:"Escolha o conhecimento que você precisa. Download instantâneo após a compra."},
+    filter:{all:"Todos",finance:"Finanças pessoais",invest:"Investimentos",business:"Negócios"},
+    badge:{new:"NOVO",best:"MAIS VENDIDO"},
+    testi:{label:"💬 Opiniões",title:"O que dizem nossos leitores",sub:"Mais de 4.800 pessoas já transformaram sua relação com o dinheiro."},
+    cta:{title:"Seu próximo nível financeiro<br>começa com uma leitura",sub:"Download instantâneo. Sem assinaturas. Seu para sempre.",btn:"Explorar todos os ebooks"},
+    footer:{desc:"Ebooks de negócios e finanças projetados para quem quer resultados reais, não teoria vazia.",cat:"Catálogo",packs:"Pacotes especiais",company:"Empresa",about:"Sobre nós",contact:"Contato",privacy:"Política de privacidade",terms:"Termos de uso",copy:"© 2026 FinEdge Books. Todos os direitos reservados.",tagline:"Download instantâneo · Pagamento seguro · Suporte 24/7"},
+    modal:{viewmore:"Ver mais",buynow:"Comprar agora →",thanks:"Obrigado pela sua compra! O processador de pagamento seria integrado aqui.",extra:"Este ebook inclui exemplos reais, modelos para download e acesso a recursos adicionais online."},
+    books:[
+      {title:"Dinheiro Inteligente",catLabel:"Finanças pessoais",desc:"Domine seus gastos, elimine dívidas e construa um fundo de emergência sólido em 90 dias com um sistema comprovado."},
+      {title:"Invista Sem Medo",catLabel:"Investimentos",desc:"Guia completo para começar na bolsa, ETFs e criptomoedas com capital mínimo e máxima estratégia."},
+      {title:"Startup em 30 Dias",catLabel:"Negócios",desc:"O framework passo a passo para validar, lançar e monetizar sua ideia de negócio sem investimento inicial."},
+      {title:"Liberdade Financeira",catLabel:"Finanças pessoais",desc:"O plano completo para alcançar independência financeira antes dos 45. Estratégias reais e aplicáveis."},
+      {title:"Trading para Todos",catLabel:"Investimentos",desc:"Aprenda análise técnica, gestão de risco e psicologia do trader com exercícios práticos incluídos."},
+      {title:"Mestre do Fluxo de Caixa",catLabel:"Negócios",desc:"Controle a liquidez da sua empresa, evite crises financeiras e mantenha seu negócio saudável o ano todo."},
+    ],
+    testimonials:[
+      {text:'"Comecei a ler \'Dinheiro Inteligente\' num domingo e na quarta-feira já tinha reestruturado toda minha carteira. É direto, prático e sem enrolação."',name:"Carlos Mendoza",role:"Engenheiro, México"},
+      {text:'"O ebook de startups me deu o framework mental que precisava para validar minha ideia sem gastar fortunas. Três meses depois lancei meu primeiro produto."',name:"Laura Paredes",role:"Empreendedora, Colômbia"},
+      {text:'"Há anos tentando entender a bolsa. Este ebook explica de forma tão clara que em uma tarde aprendi mais do que em meses de vídeos."',name:"Andrés Ríos",role:"Contador, Argentina"},
+      {text:'"O guia de fluxo de caixa literalmente salvou meu negócio. Tinha uma empresa lucrativa que quase faliu por má gestão de liquidez."',name:"María Villalobos",role:"Dona de PME, Chile"},
+      {text:'"Comprei o pacote completo e foi o melhor investimento do ano. O conteúdo está sempre atualizado e o suporte responde rápido."',name:"Jorge Peña",role:"Consultor, Espanha"},
+      {text:'"Como mãe ocupada, precisava de algo concreto. O ebook tem exatamente isso: passos claros, sem tecnicismos, aplicáveis a partir de hoje."',name:"Sofía García",role:"Professora, Peru"},
+    ]
+  }
+};
+
+const booksMeta = [
+  {id:1,emoji:"💰",cat:"finance",price:"$14.99",old:"$24.99",badge:"best",color:"#1a2a1a"},
+  {id:2,emoji:"📊",cat:"invest",price:"$17.99",old:"$29.99",badge:"new",color:"#1a1a2a"},
+  {id:3,emoji:"🚀",cat:"business",price:"$19.99",old:null,badge:null,color:"#2a1a1a"},
+  {id:4,emoji:"💎",cat:"finance",price:"$22.99",old:"$34.99",badge:"best",color:"#1a221a"},
+  {id:5,emoji:"📈",cat:"invest",price:"$16.99",old:null,badge:"new",color:"#1a1a2a"},
+  {id:6,emoji:"💼",cat:"business",price:"$15.99",old:"$22.99",badge:null,color:"#221a1a"},
+];
+
+const catKeys = {finance:"filter.finance",invest:"filter.invest",business:"filter.business"};
+let lang = 'es';
+let currentFilter = 'all';
+
+function t(key){
+  return key.split('.').reduce((o,k)=>o&&o[k],i18n[lang]) || key;
+}
+
+function applyTranslations(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    el.innerHTML = t(el.dataset.i18nHtml);
+  });
+}
+
+function renderFilters(){
+  const c = i18n[lang];
+  document.getElementById('filtersContainer').innerHTML =
+    ['all','finance','invest','business'].map(f=>`
+      <button class="filter-btn${currentFilter===f?' active':''}" onclick="filterBooks(this,'${f}')">
+        ${f==='all'?c.filter.all:t('filter.'+f)}
+      </button>`).join('');
+}
+
+function renderBooks(){
+  const l = i18n[lang];
+  const grid = document.getElementById('booksGrid');
+  const filtered = currentFilter==='all' ? booksMeta : booksMeta.filter(b=>b.cat===currentFilter);
+  grid.innerHTML = filtered.map(b=>{
+    const info = l.books[b.id-1];
+    const badgeText = b.badge ? (b.badge==='new'?l.badge.new:l.badge.best) : '';
+    return `<div class="book-card" onclick="openModal(${b.id})">
+      <div class="book-cover" style="background:linear-gradient(135deg,${b.color},#0a0a0f)">
+        <span style="font-size:4rem;z-index:1">${b.emoji}</span>
+        ${b.badge?`<div class="badge ${b.badge}">${badgeText}</div>`:''}
+      </div>
+      <div class="book-info">
+        <div class="book-cat">${info.catLabel}</div>
+        <div class="book-title">${info.title}</div>
+        <div class="book-desc">${info.desc}</div>
+        <div class="book-footer">
+          <div><span class="price">${b.price}</span>${b.old?`<span class="price-old">${b.old}</span>`:''}</div>
+          <button class="buy-btn" onclick="event.stopPropagation();openModal(${b.id})">${t('modal.viewmore')}</button>
         </div>
       </div>
-    </div>
-  </section>
+    </div>`;
+  }).join('');
+}
 
-  <section id="servicios">
-    <div class="container">
-      <h2 class="section-title">Servicios</h2>
-      <p class="section-subtitle">
-        Puedes cambiar estas tarjetas por lo que realmente quieras ofrecer.
-      </p>
-
-      <div class="services-grid">
-        <div class="card">
-          <h3>Diseño de páginas web</h3>
-          <p>Creación de sitios modernos para mostrar negocios, marcas personales o productos digitales.</p>
-        </div>
-        <div class="card">
-          <h3>Automatización con IA</h3>
-          <p>Implementación de soluciones inteligentes para ahorrar tiempo y mejorar procesos.</p>
-        </div>
-        <div class="card">
-          <h3>Asistentes virtuales</h3>
-          <p>Integración de bots y sistemas de atención que ayudan a responder preguntas y captar clientes.</p>
-        </div>
+function renderTestimonials(){
+  const list = i18n[lang].testimonials;
+  const stars = ['★★★★★','★★★★★','★★★★★','★★★★☆','★★★★★','★★★★★'];
+  const initials = list.map(t=>t.name.split(' ').map(w=>w[0]).join(''));
+  document.getElementById('testiGrid').innerHTML = list.map((t,i)=>`
+    <div class="testi-card">
+      <div class="stars">${stars[i]}</div>
+      <p class="testi-text">${t.text}</p>
+      <div class="testi-author">
+        <div class="avatar">${initials[i]}</div>
+        <div class="author-info"><strong>${t.name}</strong><span>${t.role}</span></div>
       </div>
-    </div>
-  </section>
+    </div>`).join('');
+}
 
-  <section>
-    <div class="container">
-      <div class="cta">
-        <h2>Transforma esta página en una herramienta para generar ingresos</h2>
-        <p>
-          Puedes usar esta base para vender un ebook, promocionar un curso,
-          captar clientes para servicios o construir una marca profesional.
-        </p>
-        <a href="#contacto" class="btn btn-primary">Quiero empezar</a>
-      </div>
-    </div>
-  </section>
+function renderAll(){
+  applyTranslations();
+  renderFilters();
+  renderBooks();
+  renderTestimonials();
+  document.getElementById('m-buybtn').textContent = t('modal.buynow');
+}
 
-  <section id="testimonios">
-    <div class="container">
-      <h2 class="section-title">Testimonios</h2>
-      <p class="section-subtitle">
-        Estos son ejemplos visuales. Luego puedes cambiarlos por testimonios reales.
-      </p>
+function filterBooks(btn, cat){
+  currentFilter = cat;
+  renderFilters();
+  renderBooks();
+}
 
-      <div class="testimonials-grid">
-        <div class="card testimonial">
-          <p>
-            “La página quedó mucho más profesional de lo que esperaba. Ahora transmite confianza
-            y se ve lista para mostrar un negocio real.”
-          </p>
-          <strong>— Cliente 1</strong>
-        </div>
-        <div class="card testimonial">
-          <p>
-            “Me gustó que el diseño se vea moderno y claro. Es una excelente base para vender servicios
-            o productos digitales.”
-          </p>
-          <strong>— Cliente 2</strong>
-        </div>
-        <div class="card testimonial">
-          <p>
-            “Antes tenía solo texto. Con esta estructura ya parece una web comercial de verdad.”
-          </p>
-          <strong>— Cliente 3</strong>
-        </div>
-      </div>
-    </div>
-  </section>
+function openModal(id){
+  const b = booksMeta[id-1];
+  const info = i18n[lang].books[id-1];
+  document.getElementById('m-cat').textContent = info.catLabel;
+  document.getElementById('m-title').textContent = b.emoji+' '+info.title;
+  document.getElementById('m-desc').textContent = info.desc+' '+t('modal.extra');
+  document.getElementById('m-price').innerHTML = b.price+(b.old?`<span>${b.old}</span>`:'');
+  document.getElementById('m-buybtn').textContent = t('modal.buynow');
+  document.getElementById('modal').classList.add('open');
+}
 
-  <section id="contacto">
-    <div class="container">
-      <div class="contact-box">
-        <div class="contact-info">
-          <h3>Hablemos</h3>
-          <p>Esta sección sirve para que una persona te contacte por interés en tus servicios.</p>
-          <p><strong>Email:</strong> tucorreo@ejemplo.com</p>
-          <p><strong>WhatsApp:</strong> +56 9 1234 5678</p>
-          <p><strong>Horario:</strong> Lunes a Viernes, 9:00 a 18:00</p>
-        </div>
+function closeModal(e){if(e.target.id==='modal') document.getElementById('modal').classList.remove('open')}
 
-        <div class="contact-form">
-          <h3>Envíame un mensaje</h3>
-          <form>
-            <input type="text" placeholder="Tu nombre" />
-            <input type="email" placeholder="Tu correo" />
-            <textarea placeholder="Escribe tu mensaje"></textarea>
-            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+function setLang(l){
+  lang = l;
+  const flags = {es:'🇪🇸',en:'🇺🇸',pt:'🇧🇷'};
+  const labels = {es:'ES',en:'EN',pt:'PT'};
+  document.getElementById('currentFlag').textContent = flags[l];
+  document.getElementById('currentLang').textContent = labels[l];
+  document.querySelectorAll('.lang-option').forEach((el,i)=>{
+    el.classList.toggle('active',['es','en','pt'][i]===l);
+  });
+  document.getElementById('langDropdown').classList.remove('open');
+  renderAll();
+}
 
-  <footer>
-    © 2026 MiMarca | Página profesional creada por mí
-  </footer>
+function toggleLangMenu(){
+  document.getElementById('langDropdown').classList.toggle('open');
+}
 
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.lang-selector')) document.getElementById('langDropdown').classList.remove('open');
+});
+
+renderAll();
+</script>
 </body>
 </html>
